@@ -1,17 +1,41 @@
-const API_KEY = "a5aaf99164aa91da64094da60032d1bc";
-const BASE_URL = "https://api.themoviedb.org/3";
+import { API_KEY, BASE_URL } from "../config/tmdb";
 
-// Now accepts a page parameter for pagination
 export const getPopularMovies = async (page = 1) => {
-  const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`);
-  const data = await response.json();
-  return data.results;
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.results) {
+      console.error("TMDB error:", data);
+      return []; // ✅ NEVER crash UI
+    }
+
+    return data.results;
+  } catch (error) {
+    console.error("Network error:", error);
+    return []; // ✅ NEVER crash UI
+  }
 };
 
 export const searchMovies = async (query) => {
-  const response = await fetch(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
-  );
-  const data = await response.json();
-  return data.results;
+  try {
+    const response = await fetch(
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.results) {
+      console.error("TMDB error:", data);
+      return [];
+    }
+
+    return data.results;
+  } catch (error) {
+    console.error("Network error:", error);
+    return [];
+  }
 };
