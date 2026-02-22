@@ -26,7 +26,7 @@ function Footer() {
           <a href="https://github.com/ramakrishna-112/movies-search-app" target="_blank" rel="noopener noreferrer">
             <FaGithub />
           </a>
-          <a href="www.linkedin.com/in/ramakrishnareddy112" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/ramakrishnareddy112" target="_blank" rel="noopener noreferrer">
             <FaLinkedin />
           </a>
         </div>
